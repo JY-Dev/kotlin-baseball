@@ -23,7 +23,7 @@ class BaseBallGame(private val baseBallView: BaseBallView) {
             startGame()
     }
 
-    fun setTarget(){
+    private fun setTarget(){
         val computer = mutableListOf<Int>()
         while (computer.size < 3) {
             val randomNumber = Randoms.pickNumberInRange(1, 9)
