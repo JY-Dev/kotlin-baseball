@@ -8,7 +8,7 @@ class BaseBallGame(private val baseBallView: BaseBallView) {
     private lateinit var target: List<Int>
     fun startGame() {
         baseBallView.startGame()
-        target = Randoms.pickUniqueNumbersInRange(1, 9, 3)
+        setTarget()
         while (true){
             val playerNumber = baseBallView.inputNumber()
             val baseBallResult = BaseBallResult.getBaseBallResult(target, playerNumber)
@@ -21,5 +21,16 @@ class BaseBallGame(private val baseBallView: BaseBallView) {
         val restartGame = baseBallView.restartQuestion()
         if(restartGame)
             startGame()
+    }
+
+    fun setTarget(){
+        val computer = mutableListOf<Int>()
+        while (computer.size < 3) {
+            val randomNumber = Randoms.pickNumberInRange(1, 9)
+            if (!computer.contains(randomNumber)) {
+                computer.add(randomNumber)
+            }
+        }
+        target = computer
     }
 }
